@@ -76,9 +76,10 @@ class ExcelConnector:
         writer.save()
 
     @staticmethod
-    def update_cell(file_path: str, cell: str, new_value: any) -> None:
+    def update_cell(file_path: str, sheet_name: str, cell: str, new_value: any) -> None:
         """
         Update a particular cell of google sheet
+        :param sheet_name: Name of the sheet
         :param file_path: path of the worksheet
         :param cell: cell to be updated
         :param new_value: new value of the cell
@@ -86,7 +87,7 @@ class ExcelConnector:
         """
         logger.info('Writing value %s to cell %s', new_value, cell)
         workbook = openpyxl.load_workbook(filename=file_path)
-        worksheet = workbook.worksheets[0]
+        worksheet = workbook.get_sheet_by_name(sheet_name)
         worksheet[cell] = new_value
         workbook.save(file_path)
 
