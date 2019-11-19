@@ -9,7 +9,7 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='excel-db-connector',
-    version='0.1.0',
+    version='0.2.0',
     author='Shwetabh Kumar',
     author_email='shwetabh.kumar@fyle.in',
     description='Connects Excel to a database connector to transfer information to and fro.',
@@ -22,7 +22,8 @@ setuptools.setup(
     install_requires=[
         'typing==3.7.4.1',
         'pandas==0.25.2',
-        'logger==1.4'
+        'logger==1.4',
+        'openpyxl==3.0.1'
     ],
     classifiers=[
         'Topic :: Internet :: WWW/HTTP',

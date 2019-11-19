@@ -5,6 +5,7 @@ ExcelConnector(): Connection between Excel and SQLite
 import logging
 from typing import List, Dict
 
+import openpyxl
 import pandas as pd
 
 logger = logging.getLogger('ExcelConnector')
@@ -73,6 +74,21 @@ class ExcelConnector:
             logger.info('Excel file successfully created.')
 
         writer.save()
+
+    @staticmethod
+    def update_cell(file_path: str, cell: str, new_value: any) -> None:
+        """
+        Update a particular cell of google sheet
+        :param file_path: path of the worksheet
+        :param cell: cell to be updated
+        :param new_value: new value of the cell
+        :return: None
+        """
+        logger.info('Writing value %s to cell %s', new_value, cell)
+        workbook = openpyxl.load_workbook(filename=file_path)
+        worksheet = workbook.worksheets[0]
+        worksheet[cell] = new_value
+        workbook.save(file_path)
 
     @staticmethod
     def is_empty(file_path: str) -> bool:
